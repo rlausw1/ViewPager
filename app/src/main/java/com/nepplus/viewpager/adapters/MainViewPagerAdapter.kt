@@ -10,20 +10,16 @@ import com.nepplus.viewpager.fragements.NameFragment
 class MainViewPagerAdapter( fm : FragmentManager ) : FragmentPagerAdapter(fm) {
 
     override fun getPageTitle(position: Int): CharSequence? {
-        if (position == 0 ) {
-            return "인사"
+      return when (position) {
 
-        }
-        else if( position == 1) {
-            return "이름"
-        }
-        else { return "출생년도"}
+          0 -> "이름"
+          1 -> "인사"
+          else -> "출생년도"
+
+      }
     }
 
-    override fun getCount(): Int {
-        //뷰페이저가 총 몇장짜리인지? return
-
-        return 3
+    override fun getCount(position: Int): Fragment {
 
     }
 
@@ -31,15 +27,18 @@ class MainViewPagerAdapter( fm : FragmentManager ) : FragmentPagerAdapter(fm) {
 
         //각각의 포지션에 어떤 프레그먼트가 배치되어야 하는가?
         //listview 겟뷰랑 비슷
-        if ( position ==0 ) {
-            return HelloFragment()
-        }
 
-        else if (position == 1) {
-            return NameFragment
-        }
-        else {
-            return BirthYearFragment()
-        }
+        return when (position) {
+
+            0 -> HelloFragment
+            1 -> NameFragment
+            else -> BirthYearFragment
+
+    }
+
+
+
+
+
     }
 }
